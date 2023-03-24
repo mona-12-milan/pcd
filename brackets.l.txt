@@ -1,0 +1,25 @@
+%{
+
+#include "y.tab.h"
+void yyerror(char *s);
+int yylex();
+
+%}
+
+%%
+[(]      {yylval.id = yytext[1] ; return '(';}
+[)]      {yylval.id = yytext[0] ; return ')';}
+
+[ \t]    ;
+[\n]    return 0;
+.       {ECHO; yyerror("unexpected char");}
+%%
+
+int yywrap(void) { return 1;}
+
+
+
+
+
+
+
